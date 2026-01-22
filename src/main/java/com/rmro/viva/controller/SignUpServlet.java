@@ -1,4 +1,4 @@
 package com.rmro.viva.controller;
 
-public class SignUpServlet {
+public class SignUpServlet{
 }

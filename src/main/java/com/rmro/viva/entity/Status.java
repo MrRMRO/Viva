@@ -2,11 +2,12 @@ package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "status")
-public class Status {
+public class Status implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
