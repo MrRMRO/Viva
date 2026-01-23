@@ -64,10 +64,11 @@ public class User implements Serializable {
 
     public User(){}
 
-    public User(String email, String password, String fName, String lName, Role role, Status status){
+    public User(String email, String password, String fName, String lName, String mobile, Role role, Status status){
         this.email = email;
         this.fName = fName;
         this.lName = lName;
+        this.mobile = mobile;
         this.role = role;
         this.status = status;
     }

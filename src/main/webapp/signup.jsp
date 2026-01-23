@@ -86,20 +86,25 @@
             </div>
             <form class="flex flex-col gap-5">
                 <div class="flex flex-col gap-1.5">
-                    <label class="text-white text-sm font-medium leading-normal px-1">Full Name</label>
+                    <label class="text-white text-sm font-medium leading-normal px-1">First Name</label>
                     <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#543b3d] bg-[#271c1c]/60 focus:border-primary h-12 placeholder:text-[#b99d9f]/50 px-4 text-base font-normal leading-normal transition-all"
-                           placeholder="John Doe" type="text"/>
+                           placeholder="John" type="text" id="fName"/>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                    <label class="text-white text-sm font-medium leading-normal px-1">Last Name</label>
+                    <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#543b3d] bg-[#271c1c]/60 focus:border-primary h-12 placeholder:text-[#b99d9f]/50 px-4 text-base font-normal leading-normal transition-all"
+                           placeholder="Doe" type="text" id="lName"/>
                 </div>
                 <div class="flex flex-col gap-1.5">
                     <label class="text-white text-sm font-medium leading-normal px-1">Email Address</label>
                     <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#543b3d] bg-[#271c1c]/60 focus:border-primary h-12 placeholder:text-[#b99d9f]/50 px-4 text-base font-normal leading-normal transition-all"
-                           placeholder="name@example.com" type="email"/>
+                           placeholder="name@example.com" type="email" id="email"/>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                     <div class="flex flex-col gap-1.5">
                         <label class="text-white text-sm font-medium leading-normal px-1">Password</label>
                         <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#543b3d] bg-[#271c1c]/60 focus:border-primary h-12 placeholder:text-[#b99d9f]/50 px-4 text-base font-normal leading-normal transition-all"
-                               placeholder="••••••••" type="password"/>
+                               placeholder="••••••••" type="password" id="password"/>
                     </div>
                     <div class="flex flex-col gap-1.5">
                         <label class="text-white text-sm font-medium leading-normal px-1">Date of Birth</label>
