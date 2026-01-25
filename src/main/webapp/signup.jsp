@@ -84,7 +84,7 @@
                 <p class="text-white/70 text-base font-normal leading-normal">Join our exclusive community of spirit
                     enthusiasts.</p>
             </div>
-            <form class="flex flex-col gap-5">
+            <form class="flex flex-col gap-5" id="signupForm">
                 <div class="flex flex-col gap-1.5">
                     <label class="text-white text-sm font-medium leading-normal px-1">First Name</label>
                     <input class="form-input flex w-full rounded-lg text-white focus:outline-0 focus:ring-1 focus:ring-primary border border-[#543b3d] bg-[#271c1c]/60 focus:border-primary h-12 placeholder:text-[#b99d9f]/50 px-4 text-base font-normal leading-normal transition-all"
