@@ -1,4 +1,4 @@
-package com.liquorstore.entity;
+package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -13,34 +13,31 @@ public class Cart {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "session_id", nullable = false, length = 255)
+    @Column(name = "session_id", length = 255)
     private String sessionId;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDate createdAt;
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
-    // Foreign Key
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    // Relationships
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<CartItem> cartItems;
 
-    // Constructors
     public Cart() {}
 
-    public Cart(String sessionId, LocalDate createdAt, LocalDate updatedAt, Integer userId) {
+    public Cart(String sessionId, LocalDate createdAt, LocalDate updatedAt, User user) {
         this.sessionId = sessionId;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
-        this.userId = userId;
+        this.user = user;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -53,14 +50,14 @@ public class Cart {
     public LocalDate getUpdatedAt() { return updatedAt; }
     public void setUpdatedAt(LocalDate updatedAt) { this.updatedAt = updatedAt; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public List<CartItem> getCartItems() { return cartItems; }
     public void setCartItems(List<CartItem> cartItems) { this.cartItems = cartItems; }
 
     @Override
     public String toString() {
-        return "Cart{id=" + id + ", sessionId='" + sessionId + "', userId=" + userId + "}";
+        return "Cart{id=" + id + ", sessionId='" + sessionId + "', userId=" + (user != null ? user.getId() : null) + "}";
     }
 }

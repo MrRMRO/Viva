@@ -1,4 +1,4 @@
-package com.liquorstore.entity;
+package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;

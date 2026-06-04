@@ -1,4 +1,4 @@
-package com.liquorstore.entity;
+package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -19,8 +19,9 @@ public class Address {
     private String line2;
 
     // Foreign Keys
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id", nullable = false)
@@ -41,11 +42,11 @@ public class Address {
     // Constructors
     public Address() {}
 
-    public Address(String line1, String line2, Integer userId,
+    public Address(String line1, String line2, User user,
                    City city, County county, AddressType addressType) {
         this.line1 = line1;
         this.line2 = line2;
-        this.userId = userId;
+        this.user = user;
         this.city = city;
         this.county = county;
         this.addressType = addressType;
@@ -61,8 +62,8 @@ public class Address {
     public String getLine2() { return line2; }
     public void setLine2(String line2) { this.line2 = line2; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public City getCity() { return city; }
     public void setCity(City city) { this.city = city; }

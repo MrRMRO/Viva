@@ -10,8 +10,12 @@
         <property name="connection.username">root</property>
         <property name="connection.password">RmrOW822wj@982</property>
 
-        <!-- JDBC connection pool settings -->
-        <property name="connection.pool_size">10</property>
+        <!-- JDBC connection pool settings (c3p0) -->
+        <property name="hibernate.c3p0.min_size">2</property>
+        <property name="hibernate.c3p0.max_size">15</property>
+        <property name="hibernate.c3p0.timeout">1800</property>
+        <property name="hibernate.c3p0.max_statements">50</property>
+        <property name="hibernate.c3p0.idle_test_period">300</property>
 
         <!-- SQL dialect -->
         <property name="dialect">org.hibernate.dialect.MySQL8Dialect</property>
@@ -20,12 +24,32 @@
         <property name="show_sql">true</property>
         <property name="format_sql">true</property>
 
-        <!-- Drop and re-create the database schema on startup -->
+        <!-- Auto-create/update schema based on entities -->
         <property name="hbm2ddl.auto">update</property>
 
         <!-- Mention annotated entity classes -->
         <mapping class="com.rmro.viva.entity.Role"/>
         <mapping class="com.rmro.viva.entity.Status"/>
         <mapping class="com.rmro.viva.entity.User"/>
+        <mapping class="com.rmro.viva.entity.Address"/>
+        <mapping class="com.rmro.viva.entity.AddressType"/>
+        <mapping class="com.rmro.viva.entity.City"/>
+        <mapping class="com.rmro.viva.entity.County"/>
+        <mapping class="com.rmro.viva.entity.Brand"/>
+        <mapping class="com.rmro.viva.entity.Category"/>
+        <mapping class="com.rmro.viva.entity.Product"/>
+        <mapping class="com.rmro.viva.entity.ProductImage"/>
+        <mapping class="com.rmro.viva.entity.ProductAttribute"/>
+        <mapping class="com.rmro.viva.entity.Stock"/>
+        <mapping class="com.rmro.viva.entity.Cart"/>
+        <mapping class="com.rmro.viva.entity.CartItem"/>
+        <mapping class="com.rmro.viva.entity.Order"/>
+        <mapping class="com.rmro.viva.entity.OrderItem"/>
+        <mapping class="com.rmro.viva.entity.OrderStatus"/>
+        <mapping class="com.rmro.viva.entity.PaymentMethod"/>
+        <mapping class="com.rmro.viva.entity.PaymentStatus"/>
+        <mapping class="com.rmro.viva.entity.Invoice"/>
+        <mapping class="com.rmro.viva.entity.Review"/>
+        <mapping class="com.rmro.viva.entity.Wishlist"/>
     </session-factory>
 </hibernate-configuration>

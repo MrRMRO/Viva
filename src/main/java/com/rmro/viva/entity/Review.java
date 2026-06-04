@@ -7,35 +7,33 @@ import jakarta.persistence.*;
 public class Review {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "rating", nullable = false)
+    @Column(name = "rating")
     private Integer rating;
 
     @Column(name = "text", columnDefinition = "TEXT")
     private String text;
 
-    // Foreign Keys
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    // Constructors
     public Review() {}
 
-    public Review(Integer rating, String text, Integer userId, Product product) {
+    public Review(Integer id, Integer rating, String text, User user, Product product) {
+        this.id = id;
         this.rating = rating;
         this.text = text;
-        this.userId = userId;
+        this.user = user;
         this.product = product;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -45,8 +43,8 @@ public class Review {
     public String getText() { return text; }
     public void setText(String text) { this.text = text; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public Product getProduct() { return product; }
     public void setProduct(Product product) { this.product = product; }

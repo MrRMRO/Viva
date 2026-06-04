@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Entity
-@Table(name = "order")
+@Table(name = "`order`")
 public class Order {
 
     @Id
@@ -14,7 +14,7 @@ public class Order {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "order_number", nullable = false, length = 45, unique = true)
+    @Column(name = "order_number", length = 45, unique = true)
     private String orderNumber;
 
     @Column(name = "tot_amount", nullable = false, precision = 10, scale = 2)
@@ -29,13 +29,12 @@ public class Order {
     @Column(name = "order_note", columnDefinition = "TEXT")
     private String orderNote;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDate createdAt;
 
     @Column(name = "updated_at")
     private LocalDate updatedAt;
 
-    // Foreign Keys
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_status_id", nullable = false)
     private OrderStatus orderStatus;
@@ -48,27 +47,26 @@ public class Order {
     @JoinColumn(name = "payment_status_id", nullable = false)
     private PaymentStatus paymentStatus;
 
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "address_id", nullable = false)
     private Address address;
 
-    // Relationships
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<OrderItem> orderItems;
 
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Invoice> invoices;
 
-    // Constructors
     public Order() {}
 
     public Order(String orderNumber, BigDecimal totAmount, BigDecimal shippingFee,
                  BigDecimal discountAmount, String orderNote, LocalDate createdAt,
                  LocalDate updatedAt, OrderStatus orderStatus, PaymentMethod paymentMethod,
-                 PaymentStatus paymentStatus, Integer userId, Address address) {
+                 PaymentStatus paymentStatus, User user, Address address) {
         this.orderNumber = orderNumber;
         this.totAmount = totAmount;
         this.shippingFee = shippingFee;
@@ -79,11 +77,10 @@ public class Order {
         this.orderStatus = orderStatus;
         this.paymentMethod = paymentMethod;
         this.paymentStatus = paymentStatus;
-        this.userId = userId;
+        this.user = user;
         this.address = address;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -117,8 +114,8 @@ public class Order {
     public PaymentStatus getPaymentStatus() { return paymentStatus; }
     public void setPaymentStatus(PaymentStatus paymentStatus) { this.paymentStatus = paymentStatus; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public Address getAddress() { return address; }
     public void setAddress(Address address) { this.address = address; }

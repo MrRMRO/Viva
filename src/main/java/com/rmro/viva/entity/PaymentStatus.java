@@ -12,21 +12,18 @@ public class PaymentStatus {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name", length = 45)
     private String name;
 
-    // Relationships
     @OneToMany(mappedBy = "paymentStatus", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Order> orders;
 
-    // Constructors
     public PaymentStatus() {}
 
     public PaymentStatus(String name) {
         this.name = name;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

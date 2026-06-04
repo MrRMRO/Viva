@@ -15,15 +15,13 @@ public class Invoice {
     @Column(name = "invoice_number", nullable = false, length = 45, unique = true)
     private String invoiceNumber;
 
-    @Column(name = "date", nullable = false)
+    @Column(name = "date")
     private LocalDate date;
 
-    // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id", nullable = false)
     private Order order;
 
-    // Constructors
     public Invoice() {}
 
     public Invoice(String invoiceNumber, LocalDate date, Order order) {
@@ -32,7 +30,6 @@ public class Invoice {
         this.order = order;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

@@ -1,7 +1,6 @@
 package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -9,7 +8,6 @@ import java.util.List;
 public class Product {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
@@ -20,18 +18,17 @@ public class Product {
     private String description;
 
     @Column(name = "alcohol_percentage", precision = 4, scale = 2)
-    private BigDecimal alcoholPercentage;
+    private java.math.BigDecimal alcoholPercentage;
 
-    @Column(name = "SKU", nullable = false, length = 100, unique = true)
+    @Column(name = "SKU", length = 100, unique = true)
     private String sku;
 
-    // Foreign Keys
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_image_id")
+    @JoinColumn(name = "product_image_id", nullable = false)
     private ProductImage productImage;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_attribute_id")
+    @JoinColumn(name = "product_attribute_id", nullable = false)
     private ProductAttribute productAttribute;
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -41,10 +38,6 @@ public class Product {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "categories_id", nullable = false)
     private Category category;
-
-    // Relationships
-    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<ProductImage> productImages;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Stock> stocks;
@@ -61,11 +54,11 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Wishlist> wishlists;
 
-    // Constructors
     public Product() {}
 
-    public Product(String name, String description, BigDecimal alcoholPercentage,
+    public Product(Integer id, String name, String description, java.math.BigDecimal alcoholPercentage,
                    String sku, Brand brand, Category category) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.alcoholPercentage = alcoholPercentage;
@@ -74,7 +67,6 @@ public class Product {
         this.category = category;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -84,8 +76,8 @@ public class Product {
     public String getDescription() { return description; }
     public void setDescription(String description) { this.description = description; }
 
-    public BigDecimal getAlcoholPercentage() { return alcoholPercentage; }
-    public void setAlcoholPercentage(BigDecimal alcoholPercentage) { this.alcoholPercentage = alcoholPercentage; }
+    public java.math.BigDecimal getAlcoholPercentage() { return alcoholPercentage; }
+    public void setAlcoholPercentage(java.math.BigDecimal alcoholPercentage) { this.alcoholPercentage = alcoholPercentage; }
 
     public String getSku() { return sku; }
     public void setSku(String sku) { this.sku = sku; }
@@ -101,9 +93,6 @@ public class Product {
 
     public Category getCategory() { return category; }
     public void setCategory(Category category) { this.category = category; }
-
-    public List<ProductImage> getProductImages() { return productImages; }
-    public void setProductImages(List<ProductImage> productImages) { this.productImages = productImages; }
 
     public List<Stock> getStocks() { return stocks; }
     public void setStocks(List<Stock> stocks) { this.stocks = stocks; }

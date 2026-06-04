@@ -12,41 +12,39 @@ public class Wishlist {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "added_at", nullable = false)
+    @Column(name = "added_at")
     private LocalDate addedAt;
 
-    // Foreign Keys
-    @Column(name = "user_id", nullable = false)
-    private Integer userId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    // Constructors
     public Wishlist() {}
 
-    public Wishlist(LocalDate addedAt, Integer userId, Product product) {
+    public Wishlist(LocalDate addedAt, User user, Product product) {
         this.addedAt = addedAt;
-        this.userId = userId;
+        this.user = user;
         this.product = product;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
     public LocalDate getAddedAt() { return addedAt; }
     public void setAddedAt(LocalDate addedAt) { this.addedAt = addedAt; }
 
-    public Integer getUserId() { return userId; }
-    public void setUserId(Integer userId) { this.userId = userId; }
+    public User getUser() { return user; }
+    public void setUser(User user) { this.user = user; }
 
     public Product getProduct() { return product; }
     public void setProduct(Product product) { this.product = product; }
 
     @Override
     public String toString() {
-        return "Wishlist{id=" + id + ", addedAt=" + addedAt + ", userId=" + userId + "}";
+        return "Wishlist{id=" + id + ", addedAt=" + addedAt + ", userId=" + (user != null ? user.getId() : null) + "}";
     }
 }

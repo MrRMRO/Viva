@@ -12,7 +12,7 @@ public class Brand {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name", length = 45)
     private String name;
 
     @Column(name = "description", columnDefinition = "TEXT")
@@ -21,31 +21,28 @@ public class Brand {
     @Column(name = "logo_url", length = 255)
     private String logoUrl;
 
-    // Foreign Keys
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "county_id", nullable = false)
     private County county;
 
-    @Column(name = "status_id", nullable = false)
-    private Integer statusId;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
 
-    // Relationships
     @OneToMany(mappedBy = "brand", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
 
-    // Constructors
     public Brand() {}
 
     public Brand(String name, String description, String logoUrl,
-                 County county, Integer statusId) {
+                 County county, Status status) {
         this.name = name;
         this.description = description;
         this.logoUrl = logoUrl;
         this.county = county;
-        this.statusId = statusId;
+        this.status = status;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -61,8 +58,8 @@ public class Brand {
     public County getCounty() { return county; }
     public void setCounty(County county) { this.county = county; }
 
-    public Integer getStatusId() { return statusId; }
-    public void setStatusId(Integer statusId) { this.statusId = statusId; }
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
 
     public List<Product> getProducts() { return products; }
     public void setProducts(List<Product> products) { this.products = products; }

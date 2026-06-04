@@ -1,4 +1,4 @@
-package com.liquorstore.entity;
+package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -12,21 +12,18 @@ public class AddressType {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name", length = 45)
     private String name;
 
-    // Relationships
     @OneToMany(mappedBy = "addressType", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Address> addresses;
 
-    // Constructors
     public AddressType() {}
 
     public AddressType(String name) {
         this.name = name;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

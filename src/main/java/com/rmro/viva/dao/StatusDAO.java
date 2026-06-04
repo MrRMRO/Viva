@@ -9,7 +9,7 @@ import java.util.List;
 
 public class StatusDAO {
 
-    public Status getStatusById(Long id){
+    public Status getStatusById(Integer id){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Status.class, id);
         }catch (Exception e){

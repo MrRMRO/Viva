@@ -13,33 +13,31 @@ public class Stock {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "quantity_change", nullable = false)
+    @Column(name = "quantity_change")
     private Integer quantityChange;
 
-    @Column(name = "previous_quantity", nullable = false)
+    @Column(name = "previous_quantity")
     private Integer previousQuantity;
 
-    @Column(name = "new_quantity", nullable = false)
+    @Column(name = "new_quantity")
     private Integer newQuantity;
 
     @Column(name = "note", columnDefinition = "TEXT")
     private String note;
 
-    @Column(name = "price", nullable = false, precision = 10, scale = 2)
+    @Column(name = "price", precision = 10, scale = 2)
     private BigDecimal price;
 
     @Column(name = "discount", precision = 10, scale = 2)
     private BigDecimal discount;
 
-    @Column(name = "created_at", nullable = false)
+    @Column(name = "created_at")
     private LocalDate createdAt;
 
-    // Foreign Key
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
 
-    // Constructors
     public Stock() {}
 
     public Stock(Integer quantityChange, Integer previousQuantity, Integer newQuantity,
@@ -55,7 +53,6 @@ public class Stock {
         this.product = product;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

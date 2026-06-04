@@ -1,5 +1,6 @@
 package com.rmro.viva.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
@@ -22,25 +23,28 @@ public class Category {
     @Column(name = "created_at")
     private LocalDate createdAt;
 
-    // Foreign Key
-    @Column(name = "status_id", nullable = false)
-    private Integer statusId;
+    @Column(name = "image_url", length = 1024)
+    private String imageUrl;
 
-    // Relationships
+    @Column(name = "slug", length = 100)
+    private String slug;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "status_id", nullable = false)
+    private Status status;
+
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
 
-    // Constructors
     public Category() {}
 
-    public Category(String name, String description, LocalDate createdAt, Integer statusId) {
+    public Category(String name, String description, LocalDate createdAt, Status status) {
         this.name = name;
         this.description = description;
         this.createdAt = createdAt;
-        this.statusId = statusId;
+        this.status = status;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
@@ -53,9 +57,17 @@ public class Category {
     public LocalDate getCreatedAt() { return createdAt; }
     public void setCreatedAt(LocalDate createdAt) { this.createdAt = createdAt; }
 
-    public Integer getStatusId() { return statusId; }
-    public void setStatusId(Integer statusId) { this.statusId = statusId; }
+    public String getImageUrl() { return imageUrl; }
+    public void setImageUrl(String imageUrl) { this.imageUrl = imageUrl; }
 
+    public String getSlug() { return slug; }
+    public void setSlug(String slug) { this.slug = slug; }
+
+    @JsonIgnore
+    public Status getStatus() { return status; }
+    public void setStatus(Status status) { this.status = status; }
+
+    @JsonIgnore
     public List<Product> getProducts() { return products; }
     public void setProducts(List<Product> products) { this.products = products; }
 

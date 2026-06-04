@@ -9,7 +9,7 @@ import java.util.List;
 
 public class RoleDAO {
 
-    public Role getRoleById(Long id){
+    public Role getRoleById(Integer id){
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.get(Role.class, id);
         }catch (Exception ex){

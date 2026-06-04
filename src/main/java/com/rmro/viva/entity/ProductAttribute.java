@@ -1,4 +1,4 @@
-package com.liquorstore.entity;
+package com.rmro.viva.entity;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -12,17 +12,15 @@ public class ProductAttribute {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "name", nullable = false, length = 45)
+    @Column(name = "name", length = 45)
     private String name;
 
-    @Column(name = "value", nullable = false, length = 45)
+    @Column(name = "value", length = 45)
     private String value;
 
-    // Relationships
     @OneToMany(mappedBy = "productAttribute", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Product> products;
 
-    // Constructors
     public ProductAttribute() {}
 
     public ProductAttribute(String name, String value) {
@@ -30,7 +28,6 @@ public class ProductAttribute {
         this.value = value;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 

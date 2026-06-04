@@ -12,13 +12,12 @@ public class CartItem {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "quantity", nullable = false)
+    @Column(name = "quantity")
     private Integer quantity;
 
-    @Column(name = "added_at", nullable = false)
+    @Column(name = "added_at")
     private LocalDate addedAt;
 
-    // Foreign Keys
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "product_id", nullable = false)
     private Product product;
@@ -27,7 +26,6 @@ public class CartItem {
     @JoinColumn(name = "cart_id", nullable = false)
     private Cart cart;
 
-    // Constructors
     public CartItem() {}
 
     public CartItem(Integer quantity, LocalDate addedAt, Product product, Cart cart) {
@@ -37,7 +35,6 @@ public class CartItem {
         this.cart = cart;
     }
 
-    // Getters & Setters
     public Integer getId() { return id; }
     public void setId(Integer id) { this.id = id; }
 
